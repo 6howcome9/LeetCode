@@ -1,16 +1,14 @@
 function twoSum(nums: number[], target: number): number[] {
-    let result: [number, number] = [0, 1];
     
-    while(true) {
-        const [i1, i2] = result;
-        if (nums[i1] + nums[i2] === target) {
+    let result: [number, number] = [0, 0];
+    
+    for (let i = 0; i < nums.length - 1; i++) {
+        const num: number = target - nums[i];
+        const idx: number = nums.lastIndexOf(num);
+        
+        if (i !== idx && idx > 0) {
+            result = [i, idx];
             break;
-        } else {
-            if (i2 + 1 >= nums.length) {
-                result = [i1 + 1, i1 + 2]
-            } else {
-                result = [i1, i2 + 1];
-            }
         }
     }
     
