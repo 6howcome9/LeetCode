@@ -14,7 +14,11 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
   if (list1 === null) return list2;
   if (list2 === null) return list1;
   
-  const [lower, greater] = list1.val > list2.val ? [list2, list1] : [list1, list2];
-  lower.next = mergeTwoLists(lower.next, greater);
-  return lower;
+  if (list1.val > list2.val) {
+    list2.next = mergeTwoLists(list2.next, list1);
+    return list2;
+  } else {
+    list1.next = mergeTwoLists(list1.next, list2);
+    return list1;
+  }
 };
